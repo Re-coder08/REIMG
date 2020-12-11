@@ -51,12 +51,27 @@ def convo(aa, KERNEL):
 def main():
     image_data = open_image(test_image)
     # image_data = np.asarray([[105, 102, 100, 97, 96], [103, 99, 103, 101, 102], [101, 98, 104, 102, 100], [99, 101, 106, 104, 99], [104, 104, 104, 100, 98]])
-    print(image_data.shape)
-    KERNEL = np.array([[0, -1, 0], [-1, 5, -1], [0, -1, 0]])
+    # print(image_data.shape)
+
+    # Sharpening image
+    # KERNEL = np.array([[0, -1, 0], [-1, 5, -1], [0, -1, 0]])
+
+    # for edge detection
+    # low
+    # KERNEL = np.array([[1, 0, -1], [0, 0, 0], [-1, 0, 1]])
+    # # medium
+    # KERNEL = np.array([[0, -1, 0], [-1, 4, -1], [0, -1, 0]])
+    # high
+    # KERNEL = np.array([[-1,-1, -1], [-1, 8, -1], [-1, -1, -1]])
+
+    # Gaussian Blue
+    KERNEL = np.array([[1/16, 1/8, 1/16], [1/8, 1/4, 1/8], [1/16, 1/8, 1/16]])
+
     KERNEL = np.flipud(np.fliplr(KERNEL))
 
     sharp_img = convo(image_data, KERNEL)
     img = Image.fromarray(sharp_img)
     img.show()
+
 if __name__ == '__main__':
     main()
